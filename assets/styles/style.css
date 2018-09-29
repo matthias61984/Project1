@@ -1,0 +1,61 @@
+body {
+    background-image: url("../images/gravel.png")
+}
+
+.row {
+    margin: 25px 0px;
+    padding: 10px;
+}
+
+#title {
+    background: #17CFFF;
+    border-radius: 5px;
+    color: #063440;
+}
+
+#itemDisplay {
+    background:#063440;
+    border-radius: 5px;
+}
+
+li {
+    border: 1px solid black;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.complete {
+    float: right;
+    margin-top: -7px;
+    margin-right: -7px;
+}
+
+#directionDisplay {
+    background: #119BBF;
+    border-radius: 5px;
+}
+
+#toDoDiv {
+    background: #0C677F;
+    border-radius: 5px;
+}
+
+#toDoInput, #homeInput {
+    float: right;
+}
+
+#setHomeDisplay {
+    background:#0C677F;
+    border-radius: 5px;
+}
+
+footer {
+    background: #17CFFF;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px; 
+    line-height: 50px;
+    text-align: center;
+}

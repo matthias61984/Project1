@@ -16,32 +16,45 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
         <!-- Title Bar Row -->
             <div class="row">
-                <div class="col-lg-12" align="center"><h1>Didit!</h1></div>
+                <div class="col-lg-12" align="center" id="title"><h1>DidIt!</h1></div>
             </div>
-        <!-- Map & List Div -->
+        <!-- Display & List Div -->
             <div class="row">
-                <div class="col-lg-7" id="mapDisplay">
+                <div class="col-lg-5 offset-lg-1" id="itemDisplay">
                 </div>
-                <div class="col-lg-5">
-                    <h3>My To-Do List</h3>
-                    <div id="todoList"></div>
+                <div class="col-lg-4 offset-lg-1" id="toDoDiv">
+                    <h3>My DidIt! List</h3>
+                    <div>
+                        <ul id="toDoList"></ul>
+                    </div>
+                    <label>Add a to-do item</label>
+                    <form class="form-control">
+                        <input type="text" class="col-lg-8" id="toDoInput">
+                        <button type="submit" class="btn btn-primary col-lg-4" id="addToDo">Add to my list</button>
+                    </form>
                 </div>
             </div>
         <!-- Directions & Input Div -->
             <div class="row">
-                <div class="col-lg-7">
-
+                <div class="col-lg-5 offset-lg-1" id="directionDisplay">
+                    <p>Directions will be appended here</p>
                 </div>
-                <div class="col-lg-5">
-                    <form>
-                        <label>Add a to-do item</label>
-                        <input class="form-control" type="text">
-                        <button type="submit" class="btn btn-primary" id="addButton">Add to my list</button>
+            <!-- Set Home Div -->
+                <div class="col-lg-4 offset-lg-1" id="setHomeDisplay">
+                    <label>Set my home address</label>
+                    <form class="form-control">
+                        <input type="text" class="col-lg-8" id="homeInput">
+                        <button type="submit" class="btn btn-primary col-lg-4" id="updateHome">Update Home</button>
                     </form>
                 </div>
+            </div>
+            <div class="row">
+                <footer>
+                    <p>Brought to you by Team (insert name here): Corey, Thomas, Patrick, Haleigh</p>
+                </footer>
             </div>
         </div>
         <script src="./assets/javascript/app.js" async defer></script>
