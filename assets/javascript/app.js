@@ -36,20 +36,22 @@ function renderTodos(list) {
   renderTodos(list);
 
  //Youtube API Calls
+
+ //Adds the youtoube API script tag
  var tag = $("<script>");
-
  tag.attr("src" , "https://www.youtube.com/iframe_api");
- //var firstScriptTag = document.getElementsByTagName('script')[0];
- //firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
  $("head").append(tag);
 
-var vidID = "";
+  // makes a video ID variable
+  var vidID = "";
 
+  //click function for the button with the Search ID
   $(document).on("click", "#Search" , function(event) {
     event.preventDefault();
     
      var search = $("#video").val();
+
+  //Searches for a video with the similar name as to what is entered and returns and plays the first one
    $.ajax({
  url: "https://www.googleapis.com/youtube/v3/search?q=" + search + "&maxResults=1&part=snippet&key=AIzaSyBuZheeR3N1k1UietgzIOlPCFi53bd8Xcw",
  method: "GET",
@@ -67,6 +69,7 @@ $("#itemDisplay").empty();
 
  
   
+    //makes a form so i could test the search function of the video player
     var form = $("<form>");
     var button = $("<button>");
     button.text("Search").attr("id" ,"Search").attr("type" , "button");
