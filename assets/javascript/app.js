@@ -1,5 +1,19 @@
+
+var config = {
+  apiKey: "AIzaSyDTAsxLUqJlhWu-SWkG-Ilsd8-BZFstq-g",
+  authDomain: "didit-32ed0.firebaseapp.com",
+  databaseURL: "https://didit-32ed0.firebaseio.com",
+  projectId: "didit-32ed0",
+  storageBucket: "didit-32ed0.appspot.com",
+  messagingSenderId: "78574523160"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
 // Build to do list
-function renderTodos(list) {
+function renderTodos(list, addresses) {
+
     $("#toDoList").empty();
     for (var i = 0; i < list.length; i++) {
       var toDoItem = $("<li>");
@@ -8,6 +22,7 @@ function renderTodos(list) {
       toDoClose.attr("data-to-do", i);
       toDoClose.addClass("btn btn-danger complete");
       toDoClose.text("X");
+      toDoClose.attr("data-address", addresses[i])
       toDoItem = toDoItem.append(toDoClose);
       $("#toDoList").append(toDoItem);
     }
@@ -15,11 +30,21 @@ function renderTodos(list) {
 // Add item to do todo list using local storage
   $("#addToDo").on("click", function(event) {
     event.preventDefault();
+    var address = "" 
+    if (!($("#addressInput").val().trim().length < 1)) {
+      address = $("#addressInput").val().trim();
+    }else {
+      address = "video";
+    }
+    console.log(address);
+    addresses.push(address);
     var toDoTask = $("#toDoInput").val().trim();
     list.push(toDoTask);
-    renderTodos(list);
+    renderTodos(list, addresses);
     localStorage.setItem("todolist", JSON.stringify(list));
+    localStorage.setItem("addressList", JSON.stringify(addresses));
     $("#toDoInput").val("");
+    $("#addressInput").val("");
   });
 
 // On click, remove item from todo list and from localstorage
@@ -35,7 +60,14 @@ function renderTodos(list) {
     list = [];
   }
 
-  renderTodos(list);
+ var addresses = JSON.parse(localStorage.getItem("addressList"));
+  if(!Array.isArray(addresses)) {
+    addresses = [];
+  }
+
+
+  
+  renderTodos(list, addresses);
 
  //Youtube API Calls
 
@@ -79,7 +111,6 @@ $("#itemDisplay").empty();
     form.append("<input type=text id = video>");
     form.append(button);
     $("#directionDisplay").append(form);
-    console.log(form);
 
 
  //End of Youtoube API
@@ -99,13 +130,14 @@ $("#itemDisplay").empty();
       }).then (function (response){
         homeLat = result.geometry.location.lat
         homeLong = result.geometry.location.lng
-        console.log(response);
+        //console.log(response);
       })
 
 
 
       // hard coded beginning and ending of the route 
-var start = '3734 Merrimac Ave, San Diego, CA 92117'
+var start = localStorage.getItem("Start");
+ 
 var end = '8990 Miramar Rd #140, San Diego, CA 92126'
 
       function initMap() {
@@ -191,3 +223,24 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
         stepDisplay.open(map, marker);
       });
     }
+
+  //Firebase Code Start
+    $("#updateHome").on("click", function(event) {
+      event.preventDefault();
+      start = $("#homeInput").val();
+      console.log(start);
+
+       database.ref().set(
+       {
+         Home : start
+       });
+
+      $("#addressDisplay").text(start);
+      localStorage.setItem("Start" , start);
+    })
+
+    database.ref().on("value" , function() {
+      initMap();
+    })
+
+  //Firebase Code End

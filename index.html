@@ -14,6 +14,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Jquery link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Firebase Link-->
+        <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    <!-- Bootstrap JavaScript Link -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="container-fluid">
@@ -34,7 +38,12 @@
                     <label>Add a to-do item</label>
                     <form>
                         <input type="text" class="col-lg-8" id="toDoInput">
+
                         <button type="submit" class="btn btn-primary" id="addToDo">Add to my list</button>
+=======
+                        <input type="text" class="col-lg-8" id="addressInput">
+                        <button type="submit" class="btn btn-primary col-lg-4" id="addToDo">Add to my list</button>
+
                     </form>
                 </div>
             </div>
@@ -45,11 +54,18 @@
                 </div>
             <!-- Set Home Div -->
                 <div class="col-lg-4 offset-lg-1" id="setHomeDisplay">
+
                     <label>Set my home address</label>
                     <form>
+=======
+                    <label>Set my start address</label>
+                    <form class="form-control">
+
                         <input type="text" class="col-lg-8" id="homeInput">
                         <button type="submit" class="btn btn-primary" id="updateHome">Update Home</button>
                     </form>
+                    <div id = "addressDisplay">
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -63,16 +79,6 @@
         async defer></script>
         
     
-        <!-- <script>
-                var map;
-                function initMap() {
-                  map = new google.maps.Map(document.getElementById('itemDisplay'), {
-                    center: {lat: -34.397, lng: 150.644},
-                    zoom: 20
-                  });
-                }
-                
-        </script> -->
 
     </body>
 </html>
