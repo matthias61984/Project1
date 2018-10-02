@@ -1,3 +1,4 @@
+
 var config = {
   apiKey: "AIzaSyDTAsxLUqJlhWu-SWkG-Ilsd8-BZFstq-g",
   authDomain: "didit-32ed0.firebaseapp.com",
@@ -10,7 +11,9 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// Build to do list
 function renderTodos(list, addresses) {
+
     $("#toDoList").empty();
     for (var i = 0; i < list.length; i++) {
       var toDoItem = $("<li>");
@@ -24,7 +27,7 @@ function renderTodos(list, addresses) {
       $("#toDoList").append(toDoItem);
     }
   }
-
+// Add item to do todo list using local storage
   $("#addToDo").on("click", function(event) {
     event.preventDefault();
     var address = "" 
@@ -44,6 +47,7 @@ function renderTodos(list, addresses) {
     $("#addressInput").val("");
   });
 
+// On click, remove item from todo list and from localstorage
   $(document).on("click", ".complete", function() {
     var toDoNumber = $(this).attr("data-to-do");
     list.splice(toDoNumber, 1);
@@ -56,7 +60,7 @@ function renderTodos(list, addresses) {
     list = [];
   }
 
-  var addresses = JSON.parse(localStorage.getItem("addressList"));
+ var addresses = JSON.parse(localStorage.getItem("addressList"));
   if(!Array.isArray(addresses)) {
     addresses = [];
   }
@@ -102,6 +106,7 @@ $("#itemDisplay").empty();
     //makes a form so i could test the search function of the video player
     var form = $("<form>");
     var button = $("<button>");
+    button.addClass("btn btn-primary");
     button.text("Search").attr("id" ,"Search").attr("type" , "button");
     form.append("<input type=text id = video>");
     form.append(button);
