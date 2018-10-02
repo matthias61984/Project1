@@ -47,8 +47,10 @@ function renderTodos(list, addresses) {
   $(document).on("click", ".complete", function() {
     var toDoNumber = $(this).attr("data-to-do");
     list.splice(toDoNumber, 1);
-    renderTodos(list);
+    addresses.splice(toDoNumber,1);
+    renderTodos(list,addresses);
     localStorage.setItem("todolist", JSON.stringify(list));
+    localStorage.setItem("addressList", JSON.stringify(addresses));
   });
 
   var list = JSON.parse(localStorage.getItem("todolist"));
@@ -100,12 +102,6 @@ $("#itemDisplay").empty();
  
   
     //makes a form so i could test the search function of the video player
-    var form = $("<form>");
-    var button = $("<button>");
-    button.text("Search").attr("id" ,"Search").attr("type" , "button");
-    form.append("<input type=text id = video>");
-    form.append(button);
-    $("#directionDisplay").append(form);
 
 
  //End of Youtoube API
@@ -131,7 +127,7 @@ $("#itemDisplay").empty();
 
 
       // hard coded beginning and ending of the route 
-var start = localStorage.getItem("Start");
+var start = "San Diego";
  
 var end = '8990 Miramar Rd #140, San Diego, CA 92126'
 
@@ -237,5 +233,22 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
     database.ref().on("value" , function() {
       initMap();
     })
+
+    if($("#0").attr("data-to-do") === "video"){
+      $("#directionDisplay").empty();
+      var form = $("<form>");
+    var button = $("<button>");
+    button.text("Search").attr("id" ,"Search").attr("type" , "button");
+    form.append("<input type=text id = video>");
+    form.append(button);
+    $("#directionDisplay").append(form);
+    }
+
+    else
+    {
+      $("#directionDisplay").empty();
+      start = $($("#0").attr("data-to-do"));
+      initMap();
+    }
 
   //Firebase Code End
