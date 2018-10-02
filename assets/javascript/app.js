@@ -1,4 +1,4 @@
-function renderTodos(list) {
+function renderTodos(list, addresses) {
     $("#toDoList").empty();
     for (var i = 0; i < list.length; i++) {
       var toDoItem = $("<li>");
@@ -7,6 +7,7 @@ function renderTodos(list) {
       toDoClose.attr("data-to-do", i);
       toDoClose.addClass("btn btn-danger complete");
       toDoClose.text("X");
+      toDoClose.attr("data-address", addresses[i])
       toDoItem = toDoItem.append(toDoClose);
       $("#toDoList").append(toDoItem);
     }
@@ -14,11 +15,21 @@ function renderTodos(list) {
 
   $("#addToDo").on("click", function(event) {
     event.preventDefault();
+    var address = "" 
+    if (!($("#addressInput").val().trim().length < 1)) {
+      address = $("#addressInput").val().trim();
+    }else {
+      address = "video";
+    }
+    console.log(address);
+    addresses.push(address);
     var toDoTask = $("#toDoInput").val().trim();
     list.push(toDoTask);
-    renderTodos(list);
+    renderTodos(list, addresses);
     localStorage.setItem("todolist", JSON.stringify(list));
+    localStorage.setItem("addressList", JSON.stringify(addresses));
     $("#toDoInput").val("");
+    $("#addressInput").val("");
   });
 
   $(document).on("click", ".complete", function() {
@@ -32,8 +43,15 @@ function renderTodos(list) {
   if (!Array.isArray(list)) {
     list = [];
   }
+
+  var addresses = JSON.parse(localStorage.getItem("addressList"));
+  if(!Array.isArray(addresses)) {
+    addresses = [];
+  }
+
+
   
-  renderTodos(list);
+  renderTodos(list, addresses);
 
  //Youtube API Calls
 
