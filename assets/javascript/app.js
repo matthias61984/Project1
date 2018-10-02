@@ -1,3 +1,4 @@
+// Build to do list
 function renderTodos(list) {
     $("#toDoList").empty();
     for (var i = 0; i < list.length; i++) {
@@ -11,7 +12,7 @@ function renderTodos(list) {
       $("#toDoList").append(toDoItem);
     }
   }
-
+// Add item to do todo list using local storage
   $("#addToDo").on("click", function(event) {
     event.preventDefault();
     var toDoTask = $("#toDoInput").val().trim();
@@ -21,6 +22,7 @@ function renderTodos(list) {
     $("#toDoInput").val("");
   });
 
+// On click, remove item from todo list and from localstorage
   $(document).on("click", ".complete", function() {
     var toDoNumber = $(this).attr("data-to-do");
     list.splice(toDoNumber, 1);
@@ -32,7 +34,7 @@ function renderTodos(list) {
   if (!Array.isArray(list)) {
     list = [];
   }
-  
+
   renderTodos(list);
 
  //Youtube API Calls
@@ -72,6 +74,7 @@ $("#itemDisplay").empty();
     //makes a form so i could test the search function of the video player
     var form = $("<form>");
     var button = $("<button>");
+    button.addClass("btn btn-primary");
     button.text("Search").attr("id" ,"Search").attr("type" , "button");
     form.append("<input type=text id = video>");
     form.append(button);

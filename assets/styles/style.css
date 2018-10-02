@@ -15,7 +15,9 @@ body {
 
 #itemDisplay {
     background:#063440;
+    border: 1px solid black;
     border-radius: 5px;
+    height: 300px;
 }
 
 li {
@@ -34,11 +36,23 @@ li {
 #directionDisplay {
     background: #119BBF;
     border-radius: 5px;
+    color: white;
+}
+
+.form-control {
+    background: #119BBF;
+}
+
+input {
+    height: 37px;
+    border-radius: 5px;
 }
 
 #toDoDiv {
-    background: #0C677F;
+    background: #119BBF;
     border-radius: 5px;
+    padding-bottom: 5px;
+    color: white;
 }
 
 #toDoInput, #homeInput {
@@ -46,11 +60,13 @@ li {
 }
 
 #setHomeDisplay {
-    background:#0C677F;
+    background:#119BBF;
     border-radius: 5px;
+    height: 150px;
+    color: white;
 }
 
-footer {
+/* footer {
     background: #17CFFF;
     position: absolute;
     bottom: 0;
@@ -58,4 +74,4 @@ footer {
     height: 50px; 
     line-height: 50px;
     text-align: center;
-}
+} */
