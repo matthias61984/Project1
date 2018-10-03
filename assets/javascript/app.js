@@ -33,7 +33,7 @@ function renderTodos(list, addresses) {
     var address = "" 
     if (!($("#addressInput").val().trim().length < 1)) {
       address = $("#addressInput").val().trim();
-    }else {
+    } else {
       address = "video";
     }
     console.log(address);
