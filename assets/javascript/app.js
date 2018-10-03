@@ -98,22 +98,7 @@ $("#itemDisplay").empty();
 });
 
 });
-
- 
-  
-    //makes a form so i could test the search function of the video player
-
-
- //End of Youtoube API
-
- /////              <-- google maps API call portion -->               /////
-
-
-
-
-
-      // hard coded beginning and ending of the route 
-var start = "San Diego";
+var start = "4004 Carmel Springs Way";
  
 var end = '8990 Miramar Rd #140, San Diego, CA 92126'
 
@@ -125,7 +110,7 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
       // Create a map and center it on Manhattan.
       var map = new google.maps.Map(document.getElementById('itemDisplay'), {
         zoom: 20,
-        center: {lat: homeLat, lng: homeLong}
+        center: {lat: 32.7157, lng: 117.1611}
       });
 
       // Create a renderer for directions and bind it to the map.
@@ -142,8 +127,6 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
         calculateAndDisplayRoute(
             directionsDisplay, directionsService, markerArray, stepDisplay, map);
       };
-      // document.getElementById('start').addEventListener('change', onChangeHandler);
-      // document.getElementById('end').addEventListener('change', onChangeHandler);
     }
 
     function calculateAndDisplayRoute(directionsDisplay, directionsService,
@@ -154,7 +137,7 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
       }
 
       // Retrieve the start and end locations and create a DirectionsRequest using
-      // WALKING directions.
+      // DRIVING directions.
       directionsService.route({
         origin: start, //document.getElementById('start').value,
         destination: end, //document.getElementById('end').value,
@@ -205,15 +188,13 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
     $("#updateHome").on("click", function(event) {
       event.preventDefault();
       start = $("#homeInput").val();
-      console.log(start);
-
        database.ref().set(
        {
          Home : start
        });
+       $("#homeInput").val("");
 
       $("#addressDisplay").text(start);
-      localStorage.setItem("Start" , start);
     })
 
     database.ref().on("value" , function() {
@@ -233,7 +214,7 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
     else
     {
       $("#directionDisplay").empty();
-      start = $($("#0").attr("data-to-do"));
+      end = $($("#0").attr("data-address"));
       initMap();
     }
 
