@@ -16,6 +16,7 @@ function renderTodos(list, addresses) {
       var toDoItem = $("<li>");
       toDoItem.text(list[i]);
       var toDoClose = $("<button>");
+      toDoClose.attr("id" , i);
       toDoClose.attr("data-to-do", i);
       toDoClose.addClass("btn btn-danger complete");
       toDoClose.text("X");
@@ -23,6 +24,22 @@ function renderTodos(list, addresses) {
       toDoItem = toDoItem.append(toDoClose);
       $("#toDoList").append(toDoItem);
     }
+    $("#directionDisplay").empty();
+    $("#itemDisplay");
+    if($("#0").attr("data-address") === "video"){
+      var form = $("<form>");
+    var button = $("<button>");
+    button.text("Search").attr("id" ,"Search").attr("type" , "button");
+    form.append("<input type=text id = video>");
+    form.append(button);
+    $("#directionDisplay").append(form);
+    }
+    else
+    {
+      end = $("#0").attr("data-address");
+      initMap();
+    }
+
   }
 
   $("#addToDo").on("click", function(event) {
@@ -33,7 +50,6 @@ function renderTodos(list, addresses) {
     } else {
       address = "video";
     }
-    console.log(address);
     addresses.push(address);
     var toDoTask = $("#toDoInput").val().trim();
     list.push(toDoTask);
@@ -99,8 +115,18 @@ $("#itemDisplay").empty();
 
 });
 var start = "4004 Carmel Springs Way";
+
+if(localStorage.getItem("Home").length > 0)
+{
+  start = localStorage.getItem("Home");
+}
  
-var end = '8990 Miramar Rd #140, San Diego, CA 92126'
+var end = '8990 Miramar Rd #140, San Diego, CA 92126';
+
+if(!($("#0").attr("data-address") === "video"))
+{
+  end = $("#0").attr("data-address");
+}
 
       function initMap() {
       var markerArray = [];
@@ -110,7 +136,7 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
       // Create a map and center it on Manhattan.
       var map = new google.maps.Map(document.getElementById('itemDisplay'), {
         zoom: 20,
-        center: {lat: 32.7157, lng: 117.1611}
+        center: {lat: 117.1611, lng: 32.7157}
       });
 
       // Create a renderer for directions and bind it to the map.
@@ -188,35 +214,18 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
     $("#updateHome").on("click", function(event) {
       event.preventDefault();
       start = $("#homeInput").val();
-       database.ref().set(
-       {
-         Home : start
-       });
+      localStorage.setItem("Home" , start);
+      //  database.ref().set(
+      //  {
+      //    Home : start
+      //  });
        $("#homeInput").val("");
 
       $("#addressDisplay").text(start);
-    })
-
-    database.ref().on("value" , function() {
       initMap();
     })
 
-    if($("#0").attr("data-to-do") === "video"){
-      $("#directionDisplay").empty();
-      var form = $("<form>");
-    var button = $("<button>");
-    button.text("Search").attr("id" ,"Search").attr("type" , "button");
-    form.append("<input type=text id = video>");
-    form.append(button);
-    $("#directionDisplay").append(form);
-    }
 
-    else
-    {
-      $("#directionDisplay").empty();
-      end = $($("#0").attr("data-address"));
-      initMap();
-    }
 
   //Firebase Code End
 
