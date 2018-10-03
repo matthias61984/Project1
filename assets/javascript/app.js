@@ -1,4 +1,3 @@
-
 var config = {
   apiKey: "AIzaSyDTAsxLUqJlhWu-SWkG-Ilsd8-BZFstq-g",
   authDomain: "didit-32ed0.firebaseapp.com",
@@ -11,9 +10,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-// Build to do list
 function renderTodos(list, addresses) {
-
     $("#toDoList").empty();
     for (var i = 0; i < list.length; i++) {
       var toDoItem = $("<li>");
@@ -27,7 +24,7 @@ function renderTodos(list, addresses) {
       $("#toDoList").append(toDoItem);
     }
   }
-// Add item to do todo list using local storage
+
   $("#addToDo").on("click", function(event) {
     event.preventDefault();
     var address = "" 
@@ -47,12 +44,13 @@ function renderTodos(list, addresses) {
     $("#addressInput").val("");
   });
 
-// On click, remove item from todo list and from localstorage
   $(document).on("click", ".complete", function() {
     var toDoNumber = $(this).attr("data-to-do");
     list.splice(toDoNumber, 1);
-    renderTodos(list);
+    addresses.splice(toDoNumber,1);
+    renderTodos(list,addresses);
     localStorage.setItem("todolist", JSON.stringify(list));
+    localStorage.setItem("addressList", JSON.stringify(addresses));
   });
 
   var list = JSON.parse(localStorage.getItem("todolist"));
@@ -60,7 +58,7 @@ function renderTodos(list, addresses) {
     list = [];
   }
 
- var addresses = JSON.parse(localStorage.getItem("addressList"));
+  var addresses = JSON.parse(localStorage.getItem("addressList"));
   if(!Array.isArray(addresses)) {
     addresses = [];
   }
@@ -104,13 +102,6 @@ $("#itemDisplay").empty();
  
   
     //makes a form so i could test the search function of the video player
-    var form = $("<form>");
-    var button = $("<button>");
-    button.addClass("btn btn-primary");
-    button.text("Search").attr("id" ,"Search").attr("type" , "button");
-    form.append("<input type=text id = video>");
-    form.append(button);
-    $("#directionDisplay").append(form);
 
 
  //End of Youtoube API
@@ -118,25 +109,11 @@ $("#itemDisplay").empty();
  /////              <-- google maps API call portion -->               /////
 
 
-      // hardcoded starting address (eventually this address will be replaced by users input)
-      var str = '3734 Merrimac Ave San Diego CA 92117'
-      var homeLat = "";
-      var homeLong = "";
-
-    // ajax call to return the lat and long of the code above
-      $.ajax({
-        url: "https://maps.googleapis.com/maps/api/geocode/json?address="+str.replace(/ /g , "+")+"&key=AIzaSyBuZheeR3N1k1UietgzIOlPCFi53bd8Xcw",
-        method: "GET"
-      }).then (function (response){
-        homeLat = result.geometry.location.lat
-        homeLong = result.geometry.location.lng
-        //console.log(response);
-      })
 
 
 
       // hard coded beginning and ending of the route 
-var start = localStorage.getItem("Start");
+var start = "San Diego";
  
 var end = '8990 Miramar Rd #140, San Diego, CA 92126'
 
@@ -243,4 +220,22 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
       initMap();
     })
 
+    if($("#0").attr("data-to-do") === "video"){
+      $("#directionDisplay").empty();
+      var form = $("<form>");
+    var button = $("<button>");
+    button.text("Search").attr("id" ,"Search").attr("type" , "button");
+    form.append("<input type=text id = video>");
+    form.append(button);
+    $("#directionDisplay").append(form);
+    }
+
+    else
+    {
+      $("#directionDisplay").empty();
+      start = $($("#0").attr("data-to-do"));
+      initMap();
+    }
+
   //Firebase Code End
+
