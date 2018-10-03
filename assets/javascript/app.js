@@ -109,20 +109,6 @@ $("#itemDisplay").empty();
  /////              <-- google maps API call portion -->               /////
 
 
-      // hardcoded starting address (eventually this address will be replaced by users input)
-      var str = '3734 Merrimac Ave San Diego CA 92117'
-      var homeLat = "";
-      var homeLong = "";
-
-    // ajax call to return the lat and long of the code above
-      $.ajax({
-        url: "https://maps.googleapis.com/maps/api/geocode/json?address="+str.replace(/ /g , "+")+"&key=AIzaSyBuZheeR3N1k1UietgzIOlPCFi53bd8Xcw",
-        method: "GET"
-      }).then (function (response){
-        homeLat = result.geometry.location.lat
-        homeLong = result.geometry.location.lng
-        //console.log(response);
-      })
 
 
 
@@ -252,3 +238,4 @@ var end = '8990 Miramar Rd #140, San Diego, CA 92126'
     }
 
   //Firebase Code End
+

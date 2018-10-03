@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Didit! - A to-do list app</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Reset CSS -->
@@ -11,7 +11,7 @@
     <!-- Styles CSS -->
         <link rel="stylesheet" href="./assets/styles/style.css">
     <!-- Bootstrap link -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Jquery link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Firebase Link-->
@@ -36,10 +36,11 @@
                         <ul id="toDoList"></ul>
                     </div>
                     <label>Add a to-do item</label>
-                    <form class="form-control">
-                        <input type="text" class="col-lg-8" id="toDoInput">
+                    <form>
+
                         <input type="text" class="col-lg-8" id="addressInput">
                         <button type="submit" class="btn btn-primary col-lg-4" id="addToDo">Add to my list</button>
+
                     </form>
                 </div>
             </div>
@@ -53,16 +54,16 @@
                     <label>Set my start address</label>
                     <form class="form-control">
                         <input type="text" class="col-lg-8" id="homeInput">
-                        <button type="submit" class="btn btn-primary col-lg-4" id="updateHome">Update Home</button>
+                        <button type="submit" class="btn btn-primary" id="updateHome">Update Home</button>
                     </form>
                     <div id = "addressDisplay">
                     </div>
                 </div>
             </div>
             <div class="row">
-                <footer>
+                <!-- <footer>
                     <p>Brought to you by Team (insert name here): Corey, Thomas, Patrick, Haleigh</p>
-                </footer>
+                </footer> -->
             </div>
         </div>
         <script src="./assets/javascript/app.js" async defer></script>
