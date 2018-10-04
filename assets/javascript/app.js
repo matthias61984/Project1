@@ -107,7 +107,7 @@ $("#itemDisplay").empty();
  vidID = response.items[0].id.videoId;
  var video = $("<iframe>");
  video.attr("height" , "100%").attr("width" , "100%");
- video.attr("src" ," http://www.youtube.com/embed/" + vidID +"?enablejsapi=1");
+ video.attr("src" ," https://www.youtube.com/embed/" + vidID +"?enablejsapi=1");
  $("#itemDisplay").append(video);
 });
 
