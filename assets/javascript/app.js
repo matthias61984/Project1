@@ -29,6 +29,7 @@ function renderTodos(list, addresses) {
     if($("#0").attr("data-address") === "video"){
       var form = $("<form>");
     var button = $("<button>");
+    button.addClass("btn btn-primary animated fadeIn");
     button.text("Search").attr("id" ,"Search").attr("type" , "button");
     form.append("<input type=text id = video>");
     form.append(button);
@@ -78,9 +79,6 @@ function renderTodos(list, addresses) {
   if(!Array.isArray(addresses)) {
     addresses = [];
   }
-
-
-  
   renderTodos(list, addresses);
 
  //Youtube API Calls
@@ -116,7 +114,7 @@ $("#itemDisplay").empty();
 });
 var start = "4004 Carmel Springs Way";
 
-if(localStorage.getItem("Home").length > 0)
+if(!(localStorage.getItem("Home") === null))
 {
   start = localStorage.getItem("Home");
 }
@@ -215,17 +213,9 @@ if(!($("#0").attr("data-address") === "video"))
       event.preventDefault();
       start = $("#homeInput").val();
       localStorage.setItem("Home" , start);
-      //  database.ref().set(
-      //  {
-      //    Home : start
-      //  });
-       $("#homeInput").val("");
-
+      $("#homeInput").val("");
       $("#addressDisplay").text(start);
       initMap();
     })
-
-
-
   //Firebase Code End
 
