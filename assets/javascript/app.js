@@ -79,9 +79,6 @@ function renderTodos(list, addresses) {
   if(!Array.isArray(addresses)) {
     addresses = [];
   }
-
-
-  
   renderTodos(list, addresses);
 
  //Youtube API Calls
